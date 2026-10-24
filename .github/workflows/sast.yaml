@@ -1,0 +1,30 @@
+# Static Application Security Testing
+name: sast
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  sast:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      # checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      # set up uv and a specific python version
+      - name: Set up uv with Python v3.14
+        uses: astral-sh/setup-uv@v10.3.0
+        with:
+          python-version: "3.14"
+          enable-cache: true
+      # bandit, pinned by uv.lock and configured in pyproject.toml
+      - name: Install 'sast' dependencies
+        run: uv sync --locked --group sast
+      - name: Bandit
+        run: uv run --no-sync bandit -c pyproject.toml -r src/validators

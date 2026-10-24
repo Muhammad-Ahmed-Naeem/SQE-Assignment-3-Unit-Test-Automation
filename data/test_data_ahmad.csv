@@ -1,0 +1,14 @@
+test_id,function_name,input_val,min_val,max_val,expected,technique,description
+TC_BET_CSV_01,between,15,10,20,True,ECP,Valid nominal value strictly inside range [10 20]
+TC_BET_CSV_02,between,10,10,20,True,BVA,Value exactly at inclusive lower boundary min_val=10
+TC_BET_CSV_03,between,20,10,20,True,BVA,Value exactly at inclusive upper boundary max_val=20
+TC_BET_CSV_04,between,9,10,20,False,BVA,Value just below inclusive lower boundary min_val-1=9
+TC_BET_CSV_05,between,21,10,20,False,BVA,Value just above inclusive upper boundary max_val+1=21
+TC_LEN_CSV_01,length,hello,5,10,True,BVA,String length exactly at inclusive lower boundary len=5
+TC_LEN_CSV_02,length,1234567890,5,10,True,BVA,String length exactly at inclusive upper boundary len=10
+TC_LEN_CSV_03,length,four,5,10,False,BVA,String length just below lower boundary len=4
+TC_LEN_CSV_04,length,eleven11111,5,10,False,BVA,String length just above upper boundary len=11
+TC_EML_CSV_01,email,ahmad.naeem@example.com,,,True,ECP,Standard valid email address
+TC_EML_CSV_02,email,ahmadexample.com,,,False,ECP,Invalid email missing @ delimiter
+TC_EML_CSV_03,email,ahmad@@example.com,,,False,ECP,Invalid email containing multiple @ symbols
+TC_EML_CSV_04,email,@example.com,,,False,ECP,Invalid email missing local username part

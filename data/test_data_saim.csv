@@ -1,0 +1,14 @@
+test_id,function_name,input_val,expected,technique,description
+TC_DOM_CSV_01,domain,google.com,True,ECP,Standard valid commercial domain
+TC_DOM_CSV_02,domain,bbc.co.uk,True,ECP,Valid country code TLD domain
+TC_DOM_CSV_03,domain,localhost,False,ECP,Invalid domain missing top level domain
+TC_DOM_CSV_04,domain,-badsite.com,False,BVA,Invalid leading hyphen boundary
+TC_IP_CSV_01,ipv4,192.168.1.1,True,ECP,Standard private IPv4 address
+TC_IP_CSV_02,ipv4,0.0.0.0,True,BVA,Minimum IPv4 boundary all zero octets
+TC_IP_CSV_03,ipv4,255.255.255.255,True,BVA,Maximum IPv4 boundary all 255 octets
+TC_IP_CSV_04,ipv4,256.0.0.1,False,BVA,Above maximum IPv4 octet 256
+TC_IP_CSV_05,ipv4,192.168.1,False,ECP,Incomplete IPv4 missing last octet
+TC_CRD_CSV_01,card,4242424242424242,True,ECP,Valid card passing Luhn algorithm
+TC_CRD_CSV_02,card,4242424242424241,False,ECP,Card number with invalid Luhn checksum
+TC_CRD_CSV_03,card,4012888888881,True,BVA,Valid 13-digit minimum card length
+TC_CRD_CSV_04,card,40128888888,False,BVA,Card length below 13 digit boundary
